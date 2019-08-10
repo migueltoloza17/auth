@@ -20,7 +20,6 @@ mongoose.connect(/*mongoUrl*/process.env.mongourl, {useNewUrlParser: true}, (err
 const { user } = require('./models/user');
 const { login, register,  secure} = require('./controllers/auth');
 
-
 //const { register } = require('./controllers/auth');
 
 //otra forma de declarar al objeto user
@@ -30,6 +29,10 @@ const { login, register,  secure} = require('./controllers/auth');
 app.use(bodyParser.urlencoded({ extended: false })); 
 // parse application/json
 app.use(bodyParser.json());
+
+app.get('/',(req,res)=>{
+    res.send(`<h1>SERVER</h1>`);
+    }) 
 
 //app.get('/new/user', (req, res) =>{
 app.post('/new/user', verify.verifyTkn, register)
